@@ -21,9 +21,6 @@ var xmlhttp = new XMLHttpRequest();
                     '</soap:Body>' +
                 '</soap:Envelope>';
 
-            //specify request headers
-            xmlhttp.setRequestHeader('Content-Type', 'text/xml; charset=utf-8');
-            xmlhttp.setRequestHeader('SOAPAction', '"urn:thesecretserver.com/Authenticate"';);
 
             //FOR TESTING: display results in an alert box once the response is received
             xmlhttp.onreadystatechange = function () {
@@ -33,6 +30,14 @@ var xmlhttp = new XMLHttpRequest();
 
             //send the SOAP request
             xmlhttp.send(strRequest);
+            
+            
+   //In case if you have to add xml to html, consider below code
+parser = new DOMParser();
+xmlDoc = parser.parseFromString(xmlhttp,"text/xml");
+
+document.getElementById("demo").innerHTML =
+xmlDoc.getElementsByTagName("username")[0].childNodes[0].nodeValue;
             
             
             
